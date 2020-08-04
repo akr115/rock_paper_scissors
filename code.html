@@ -1,0 +1,82 @@
+<html>
+<script>
+function computerPlay(){
+  
+  switch (Math.floor(Math.random()*3)+1){
+      case 1:
+      return 'ROCK';
+      case 2:
+      return 'PAPER';
+      case 3:
+      return 'SCISSORS';
+  }
+}
+function playRound(playerSelection, computerSelection){
+computerSelection = computerPlay();
+playerSelection = prompt('Rock,Paper, or Scissors?');
+if (playerSelection.toUpperCase() == computerSelection){
+    if (playerSelection.toUpperCase() == 'ROCK'){
+        return 'Draw! You both got rock.'
+    }
+    else if (playerSelection.toUpperCase()== 'PAPER'){
+        return 'Draw! You both got paper.';
+    }
+    else{
+        return 'Draw! You both got scissors.'
+    }
+}
+if (playerSelection.toUpperCase() != computerSelection){
+    if (playerSelection.toUpperCase() == 'ROCK' && computerSelection == 'SCISSORS'){
+        return 'You win! Rock beats scissors.';
+    }
+    else if (playerSelection.toUpperCase() == 'ROCK' && computerSelection == 'PAPER'){
+        return 'You lose! Rock gets beaten by paper.';
+    }
+    else if (playerSelection.toUpperCase() == 'PAPER' && computerSelection == 'SCISSORS'){
+        return 'You lose! Paper gets beaten by scissors.';
+    }
+    else if (playerSelection.toUpperCase() == 'PAPER' && computerSelection == 'ROCK'){
+        return 'You win! Paper beats rock.';
+    }
+    else if (playerSelection.toUpperCase() == 'SCISSORS' && computerSelection == "PAPER"){
+        return 'You win! Scissors beats paper.';
+    }
+    else if (playerSelection.toUpperCase() == 'SCISSORS' && computerSelection ==  'ROCK' ){
+        return 'You lose! Scissors gets beaten by rock.';
+    }
+}
+}
+function game(){
+    var countPlayer = 0;
+    var countComputer = 0;
+    while (countPlayer !=2 || countPlayer !=2)  {
+        var game = playRound();
+       console.log(game);
+        if (game.indexOf('win') > 0 ){
+            countPlayer++
+        }
+        else if (game.indexOf('lose') > 0){
+            countComputer++;
+        }
+        console.log( 'Your score: ' + countPlayer + ' Computer score: ' + countComputer);
+    }
+        if (countPlayer > countComputer){
+            return 'You win!';
+        }
+        else if (countComputer > countPlayer){
+            return 'You lose';
+
+        }
+       
+        
+ 
+}
+console.log(game());
+
+
+
+
+
+</script>
+
+</html>
