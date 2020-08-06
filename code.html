@@ -49,7 +49,7 @@ if (playerSelection.toUpperCase() != computerSelection){
 function game(){
     var countPlayer = 0;
     var countComputer = 0;
-    while (countPlayer !=2 || countPlayer !=2)  {
+    for(i = 0; i < 5 ; i++) {
         var game = playRound();
        console.log(game);
         if (game.indexOf('win') > 0 ){
@@ -60,12 +60,17 @@ function game(){
         }
         console.log( 'Your score: ' + countPlayer + ' Computer score: ' + countComputer);
     }
-        if (countPlayer > countComputer){
+        
+        
+         if (countPlayer > countComputer){
             return 'You win!';
         }
         else if (countComputer > countPlayer){
-            return 'You lose';
+            return 'You lose.';
 
+        }
+        else {
+            return 'You drew.'
         }
        
         
