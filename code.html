@@ -28,12 +28,11 @@
         margin-left: -10px;
     }
 </style>
-
     </head>
 <body>
     <div id = 'ui'>
     <h1 id = 'header'> Choose your weapon:  </h1>
-    <p> First one to 5 wins!</p>
+    <p id = 'disappear'> First one to 5 wins!</p>
 <form id ='form'>
 <ul>
 <li><button type = 'button' id = 'rock'>Rock</button> </li>
@@ -44,16 +43,30 @@
 <div id ="container"></div>
 <div id ="score"></div>
 <div id ='winner'></div>
+<div id = 'resetbtn'></div>
 
 
-</div>]
+</div>
 </body> 
 <script>
 
     const container = document.querySelector('#container'); 
     const score = document.querySelector('#score');
     const buttons = document.querySelectorAll('button');
-    const winner = document.querySelector('winner');
+    const winner = document.querySelector('#winner');
+    const form = document.querySelector('#form');
+    const resetbtn = document.querySelector('#resetbtn');
+   
+    const reset = document.createElement('button');
+    reset.setAttribute('type','reset');
+    reset.innerText = 'Reset';
+    reset.addEventListener('click', () => {
+          window.location.reload();
+   })
+
+
+    const disappear = document.querySelector('#disappear');
+
     let compScore = 0;
     let playerScore = 0;
     let draw = 0;
@@ -157,113 +170,28 @@
     function checkWinner(){
         if (playerScore == 5 || compScore == 5){
             if(playerScore == 5){
-                
+                disappear.remove();
+                for (let i = 0; i < buttons.length; i++){
+                    buttons[i].remove();
+                    }
+                winner.innerHTML = 'You won!';
+                displayScore();
+                resetbtn.appendChild(reset);
+                return;
             }
+          else if( compScore == 5){
+           disappear.remove();
+            for (let i = 0; i < buttons.length; i++){
+                    buttons[i].remove();
+                    }
+                winner.innerHTML = 'You lost!';
+                displayScore();
+                resetbtn.appendChild(reset);
+                return;
+          }  
         }
     }
-    
-    
-    
-    </script>
-
-
+  </script>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- function computerPlay(){
-  
-  switch (Math.floor(Math.random()*3)+1){
-      case 1:
-      return 'ROCK';
-      case 2:
-      return 'PAPER';
-      case 3:
-      return 'SCISSORS';
-  }
-}
-function playRound(playerSelection, computerSelection){
-computerSelection = computerPlay();
-playerSelection = prompt('Rock,Paper, or Scissors?');
-if (playerSelection.toUpperCase() == computerSelection){
-    if (playerSelection.toUpperCase() == 'ROCK'){
-        return 'Draw! You both got rock.'
-    }
-    else if (playerSelection.toUpperCase()== 'PAPER'){
-        return 'Draw! You both got paper.';
-    }
-    else{
-        return 'Draw! You both got scissors.'
-    }
-}
-if (playerSelection.toUpperCase() != computerSelection){
-    if (playerSelection.toUpperCase() == 'ROCK' && computerSelection == 'SCISSORS'){
-        return 'You win! Rock beats scissors.';
-    }
-    else if (playerSelection.toUpperCase() == 'ROCK' && computerSelection == 'PAPER'){
-        return 'You lose! Rock gets beaten by paper.';
-    }
-    else if (playerSelection.toUpperCase() == 'PAPER' && computerSelection == 'SCISSORS'){
-        return 'You lose! Paper gets beaten by scissors.';
-    }
-    else if (playerSelection.toUpperCase() == 'PAPER' && computerSelection == 'ROCK'){
-        return 'You win! Paper beats rock.';
-    }
-    else if (playerSelection.toUpperCase() == 'SCISSORS' && computerSelection == "PAPER"){
-        return 'You win! Scissors beats paper.';
-    }
-    else if (playerSelection.toUpperCase() == 'SCISSORS' && computerSelection ==  'ROCK' ){
-        return 'You lose! Scissors gets beaten by rock.';
-    }
-}
-}
-function game(){
-    var countPlayer = 0;
-    var countComputer = 0;
-    for(i = 0; i < 5 ; i++) {
-        var game = playRound();
-       console.log(game);
-        if (game.indexOf('win') > 0 ){
-            countPlayer++
-        }
-        else if (game.indexOf('lose') > 0){
-            countComputer++;
-        }
-        console.log( 'Your score: ' + countPlayer + ' Computer score: ' + countComputer);
-    }
-        
-        
-         if (countPlayer > countComputer){
-            return 'You win!';
-        }
-        else if (countComputer > countPlayer){
-            return 'You lose.';
-
-        }
-        else {
-            return 'You drew.'
-        }
-       
-        
- 
-}
-console.log(game());
-
---> 
 
